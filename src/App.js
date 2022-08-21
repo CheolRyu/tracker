@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
 const App = () => {
   const date = new Date();
 
@@ -10,10 +11,12 @@ const App = () => {
     { id: 4, title: 'Gym', amount: 50, date: date },
     { id: 5, title: 'Car', amount: 200, date: date },
   ];
-
+  const onAddExpenseHandler = (expense) => {
+    console.log('in addExpense in App.js: ', expense);
+  };
   return (
     <div>
-      <h1>Expense Tracker</h1>
+      <NewExpense onAddExpense={onAddExpenseHandler} />
       <Expenses expenses={expenses} />
     </div>
   );
