@@ -11,10 +11,12 @@ const App = () => {
     { id: 4, title: 'Gym', amount: 50, date: date },
     { id: 5, title: 'Car', amount: 200, date: date },
   ];
-
+  const onAddExpenseHandler = (expense) => {
+    console.log('in addExpense in App.js: ', expense);
+  };
   return (
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={onAddExpenseHandler} />
       <Expenses expenses={expenses} />
     </div>
   );
