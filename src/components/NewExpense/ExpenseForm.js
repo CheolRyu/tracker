@@ -2,59 +2,65 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
-  const [userInput, setUserInput] = useState({
-    enteredTitle: '',
-    enteredAmount: '',
-    enteredDate: '',
-  });
-  // const [enteredTitle, setEnteredTitle] = useState('');
-  // const [enteredAmount, setEnteredAmount] = useState('');
-  // const [enteredDate, setEnteredDate] = useState('');
+  // const [userInput, setUserInput] = useState({
+  //   enteredTitle: '',
+  //   enteredAmount: '',
+  //   enteredDate: '',
+  // });
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
   const titleChangeHandler = (event) => {
     // setUserInput({
     //   ...userInput,
     //   enteredTitle: event.target.value,
     // });
     // if the state update is dependent on the previous state, use this syntax
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredTitle: event.target.value,
-      };
-    });
+    // setUserInput((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     enteredTitle: event.target.value,
+    //   };
+    // });
+    setEnteredTitle(event.target.value);
   };
   const changeAmountHandler = (event) => {
     // setUserInput({
     //   ...userInput,
     //   enteredAmount: event.target.value,
     // });
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredAmount: event.target.value,
-      };
-    });
+    // setUserInput((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     enteredAmount: event.target.value,
+    //   };
+    // });
+    setEnteredAmount(event.target.value);
   };
   const changeDateHandler = (event) => {
     // setUserInput({
     //   ...userInput,
     //   endteredDate: event.target.value,
     // });
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredDate: event.target.value,
-      };
-    });
+    // setUserInput((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     enteredDate: event.target.value,
+    //   };
+    // });
+    setEnteredDate(event.target.value);
   };
   const submitHandler = (event) => {
     event.preventDefault();
     const expenseData = {
-      title: userInput.enteredTitle,
-      amount: userInput.enteredAmount,
-      date: new Date(userInput.enteredDate),
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
     };
     props.onSaveExpenseData(expenseData);
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
   };
   return (
     <div>
@@ -66,7 +72,7 @@ const ExpenseForm = (props) => {
               type='text'
               id='expense-name'
               onChange={titleChangeHandler}
-              value={userInput.enteredTitle} //two ways to access the state
+              value={enteredTitle} //two ways to access the state
             />
           </div>
           <div className='new-expense__control'>
@@ -77,7 +83,7 @@ const ExpenseForm = (props) => {
               step='0.01'
               id='expense-name'
               onChange={changeAmountHandler}
-              value={userInput.enteredAmount} //two ways to access the state
+              value={enteredAmount} //two ways to access the state
             />
           </div>
           <div className='new-expense__control'>
@@ -88,11 +94,14 @@ const ExpenseForm = (props) => {
               max='2023-12-31'
               id='expense-name'
               onChange={changeDateHandler}
-              value={userInput.enteredDate} //two ways to access the state
+              value={enteredDate} //two ways to access the state
             />
           </div>
         </div>
         <div className='new-expense__actions'>
+          <button type='button' onClick={props.onCancel}>
+            Cancel
+          </button>
           <button type='submit'>Add Expense</button>
         </div>
       </form>
