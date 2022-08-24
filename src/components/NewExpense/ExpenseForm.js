@@ -7,60 +7,33 @@ const ExpenseForm = (props) => {
   //   enteredAmount: '',
   //   enteredDate: '',
   // });
-  const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredAmount, setEnteredAmount] = useState('');
-  const [enteredDate, setEnteredDate] = useState('');
+  const [enteredTitle, setEnteredTitle] = useState(''); // useState() returns an array with exactly 2 elements
+  const [enteredAmount, setEnteredAmount] = useState(''); // useState() returns an array with exactly 2 elements
+  const [enteredDate, setEnteredDate] = useState(''); // useState() returns an array with exactly 2 elements
   const titleChangeHandler = (event) => {
-    // setUserInput({
-    //   ...userInput,
-    //   enteredTitle: event.target.value,
-    // });
-    // if the state update is dependent on the previous state, use this syntax
-    // setUserInput((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     enteredTitle: event.target.value,
-    //   };
-    // });
+    // event = {target: {…}, isTrusted: true, nativeEvent: {…}, currentTarget: null, eventPhase: 2, bubbles: false, cancelable: true, defaultPrevented: false, composed: true, timeStamp: 1000, …}
+
     setEnteredTitle(event.target.value);
   };
   const changeAmountHandler = (event) => {
-    // setUserInput({
-    //   ...userInput,
-    //   enteredAmount: event.target.value,
-    // });
-    // setUserInput((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     enteredAmount: event.target.value,
-    //   };
-    // });
-    setEnteredAmount(event.target.value);
+    // event = {target: {…}, isTrusted: true, nativeEvent: {…}, currentTarget: null, eventPhase: 2, bubbles: false, cancelable: true, defaultPrevented: false, composed: true, timeStamp: 1000, …}
+    setEnteredAmount(event.target.value); // setEnteredAmount() is a function that React provides us to update the state (enteredAmount)
   };
   const changeDateHandler = (event) => {
-    // setUserInput({
-    //   ...userInput,
-    //   endteredDate: event.target.value,
-    // });
-    // setUserInput((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     enteredDate: event.target.value,
-    //   };
-    // });
-    setEnteredDate(event.target.value);
+    setEnteredDate(event.target.value); // setEnteredDate() is a function that React provides us to update the state (enteredDate)
   };
   const submitHandler = (event) => {
-    event.preventDefault();
+    // event is a JavaScript object
+    event.preventDefault(); // prevent default behavior of submitting the form
     const expenseData = {
-      title: enteredTitle,
-      amount: enteredAmount,
-      date: new Date(enteredDate),
+      title: enteredTitle, // enteredTitle is a custom property
+      amount: +enteredAmount, // + converts string to number
+      date: new Date(enteredDate), // new Date() converts string to date
     };
-    props.onSaveExpenseData(expenseData);
-    setEnteredTitle('');
-    setEnteredAmount('');
-    setEnteredDate('');
+    props.onSaveExpenseData(expenseData); // onSaveExpenseData is a custom property
+    setEnteredTitle(''); // reset the form
+    setEnteredAmount(''); // reset the form
+    setEnteredDate(''); // reset the form
   };
   return (
     <div>
